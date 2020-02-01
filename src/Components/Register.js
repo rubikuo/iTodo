@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import axios from "axios";
 import { css } from "glamor";
-import { Redirect } from "react-router-dom";
-
+import { Redirect, Link } from "react-router-dom";
 
 // to push new user info to server
 export default class Register extends Component {
@@ -12,7 +11,7 @@ export default class Register extends Component {
     this.state = {
       email: "",
       password: "",
-      error: false,
+      error: null,
       registered: false
     };
     this.onSubmit = this.onSubmit.bind(this);
@@ -22,8 +21,8 @@ export default class Register extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    if(this.state.email === "" || this.state.password === "")return;
-    
+    if (this.state.email === "" || this.state.password === "") return;
+
     let userData = {
       email: this.state.email,
       password: this.state.password
@@ -32,15 +31,15 @@ export default class Register extends Component {
       .post("http://3.120.96.16:3002/register", userData)
       .then(response => {
         console.log(response);
-        this.setState({registered: true});
+        this.setState({ registered: true });
       })
       .catch(err => {
         if (!err.response) {
-            this.setState({ error: err.message });
+          this.setState({ error: err.message });
         } else if (err.response.data.details) {
-            this.setState({ error: err.response.data.details[0].message });
+          this.setState({ error: err.response.data.details[0].message });
         } else {
-            this.setState({ error: err.response.data.message });
+          this.setState({ error: err.response.data.message });
         }
       });
   }
@@ -65,17 +64,20 @@ export default class Register extends Component {
       }
     });
     if (this.state.registered) {
-        return <Redirect to="/login" />;
-      }
-       
+      return <Redirect to="/login" />;
+    }
+
     let showMsg;
 
-    if(this.state.error){
+    if (this.state.error === "User with that email address exists") {
       showMsg = (
-          <p>{this.state.error}</p>
-      )
+        <p>
+          {this.state.error}, Go to <Link to="/login">Log In</Link>
+        </p>
+      );
+    } else if (this.state.error) {
+      showMsg = <p>{this.state.error}</p>;
     }
-    
 
     return (
       <div className="container">
@@ -83,7 +85,6 @@ export default class Register extends Component {
           <title>Register</title>
         </Helmet>
         <form onSubmit={this.onSubmit}>
-
           <label>Email</label>
           <input
             type="email"

@@ -1,4 +1,4 @@
-*{
+* {
   box-sizing: border-box;
   margin: 0 auto;
   padding: 0;
@@ -8,21 +8,19 @@
   text-align: center;
 }
 
-
-
-.container, .homeContainer {
+.container,
+.homeContainer {
   width: 90vw;
   height: 90vh;
   border: 1px solid black;
 }
 
-.homeContainer{
+.homeContainer {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-
 }
-.smlCtn{
+.smlCtn {
   width: 30%;
   height: 30%;
   border: 1px solid blue;
@@ -34,7 +32,7 @@
   background-color: rgba(66, 66, 119, 0.289);
 }
 
-.container{
+.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,19 +44,77 @@ form {
   justify-content: center;
   width: 35%;
   height: 50%;
-  background-color: rgba(141, 165, 163, 0.488); 
+  background-color: rgba(141, 165, 163, 0.488);
   border-radius: 20px;
 }
 
-label{
+form.todoForm {
+  width: 50%;
+  height: 10%;
+  padding: 15px;
+  flex-direction: row;
+  background-color: rgba(141, 165, 163, 0.488);
+}
+
+form.todoForm input {
+  width: 80%;
+}
+
+form.todoForm button {
+  background-color: transparent;
+  border: none;
+}
+
+label {
   margin: 5px auto 10px auto;
 }
 
-input[type="email"],input[type="password"] {
+input[type="email"],
+input[type="password"] {
   margin: 10px auto 10px auto;
   width: 80%;
   line-height: 1rem;
   padding: 10px;
+}
 
+.todoContent {
+  width: 50%;
+  height: 50%;
+  background-color: rgba(0, 128, 128, 0.673);
+  margin: 10px auto;
+  overflow: scroll;
+}
 
+ul li.item {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  cursor: pointer;
+
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+ul li.checked::before{
+content: "";
+position: absolute;
+border-color: rgb(14, 14, 14);
+border-style: solid;
+border-width: 0 2px 2px 0;
+top: 10px;
+left: 16px;
+transform: rotate(45deg);
+height: 15px;
+width: 7px;
+}
+
+input[type="checkbox"] {
+  border: 1px solid black;
+}
+
+.deleteBtn {
+  border: none;
 }
