@@ -6,7 +6,7 @@ import { token$, updateToken } from "./Store";
 import { Redirect } from "react-router-dom";
 import jwt from "jsonwebtoken";
 import { FaPlusCircle, FaTrash } from "react-icons/fa";
-import Header from "./Header";
+import HeaderMemo from "./Header";
 
 export default class Todo extends Component {
   constructor(props) {
@@ -16,9 +16,10 @@ export default class Todo extends Component {
       decodedToken: "",
       todos: [],
       addContent: "",
-      check:"",
+      check: "",
       login: true,
-      page: "todo"
+      page: "todo",
+      errorMsg: ""
     };
     this.addTodo = this.addTodo.bind(this);
     this.submitTodo = this.submitTodo.bind(this);
@@ -63,8 +64,8 @@ export default class Todo extends Component {
     }
   }
 
-  handleCheck(e){
-    e.target.classList.toggle("checked")
+  handleCheck(e) {
+    e.target.classList.toggle("checked");
   }
 
   logOut() {
@@ -86,12 +87,18 @@ export default class Todo extends Component {
         }
       )
       .then(response => {
-        console.log(response);
-        this.fetchData();
-        this.setState({addContent:""})
+        // the response is the data we added so we an directly add it to the state without fetching the data from the server
+        console.log(response.data);
+        // this.fetchData();
+
+        this.setState({
+          addContent: "",
+          todos: [...this.state.todos, response.data.todo]
+        });
       })
       .catch(err => {
-        console.log(err);
+        console.log(err.response.data);
+        this.setState({ errorMsg: err.response.data.details[0].message });
       });
   }
 
@@ -108,11 +115,11 @@ export default class Todo extends Component {
       })
       .then(response => {
         console.log(response);
-        this.fetchData();
+        this.setState({
+          todos: this.state.todos.filter(t => t.id !== id)
+        });
       });
   }
-  
-
 
   componentWillUnmount() {
     this.source.cancel();
@@ -120,61 +127,67 @@ export default class Todo extends Component {
   }
 
   render() {
+    let showMsg = <p>{this.state.errorMsg}</p>;
+
     if (!this.state.token) {
-      return <Redirect to="/home" />;
+      return <Redirect to="/" />;
     }
     // let email = this.state.decodedToken.email;
 
     let { todos } = this.state;
     let { check } = this.state;
 
-    let renderTodo = todos.length ? (
-      todos.map(todo => {
-        return (
-          <li
-            key={todo.id}
-            id={todo.id}
-            className={`item ${check}`}
-            onClick={(e)=>{this.handleCheck(e)}}
-          >
-            {todo.content}
-            <button
-              onClick={() => {
-                this.deleteItem(todo.id);
+    let renderTodo = todos.length
+      ? todos.map(todo => {
+          return (
+            <li
+              key={todo.id}
+              id={todo.id}
+              className={`item ${check}`}
+              onClick={e => {
+                this.handleCheck(e);
               }}
-              className="deleteBtn"
             >
-              <FaTrash size="1rem"/>
-            </button>
-          </li>
-        );
-      })
-    ) : (
-      null
-    );
+              {todo.content}
+              <button
+                onClick={() => {
+                  this.deleteItem(todo.id);
+                }}
+                className="deleteBtn"
+              >
+                <FaTrash size="1rem" />
+              </button>
+            </li>
+          );
+        })
+      : null;
 
     return (
       <div className="container">
         <Helmet>
           <title>Todo List</title>
         </Helmet>
-        <Header decodedToken={this.state.decodedToken} page={this.state.page} logOut={this.logOut}/>
-        {/* <h1>Welcome {email}</h1> */}
+        <HeaderMemo
+          decodedToken={this.state.decodedToken}
+          page={this.state.page}
+          logOut={this.logOut}
+        />
         <div className="wrapCtn">
-        <h2 className="todoHeader">Todo</h2>
-        <form onSubmit={this.submitTodo} className="todoForm">
-          <input
-            placeholder="Something to do..."
-            onChange={this.addTodo}
-            type="text"
-            value={this.state.addContent}
-          />
-          <button>
-            <FaPlusCircle size="2rem" />
-          </button>
-        </form>
-        <ul className="collection with-header todoContent">{renderTodo}</ul>
+          <h2 className="todoHeader">Todo</h2>
+          <form onSubmit={this.submitTodo} className="todoForm">
+            <input
+              placeholder="Something to do..."
+              onChange={this.addTodo}
+              type="text"
+              value={this.state.addContent}
+            />
+            <button>
+              <FaPlusCircle size="2rem" />
+            </button>
+          </form>
+          <ul className="collection with-header todoContent">{renderTodo}</ul>
         </div>
+        {showMsg}
       </div>
     );
   }

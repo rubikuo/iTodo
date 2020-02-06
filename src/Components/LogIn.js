@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import axios from "axios";
 import { token$, updateToken } from "./Store";
 import { Redirect } from "react-router-dom";
-import Header from "./Header";
+import HeaderMemo from "./Header";
 import Form from "./Form";
 import {FaUser, FaInfoCircle} from "react-icons/fa"
 
@@ -78,7 +78,7 @@ export default class LogIn extends Component {
 
   render() {
     if (this.state.token) {
-      return <Redirect to="/" />;
+      return <Redirect to="/todo" />;
     }
     let showMsg;
     if (this.state.error) {
@@ -90,7 +90,7 @@ export default class LogIn extends Component {
         <Helmet>
           <title>Log In</title>
         </Helmet>
-        <Header page={this.state.page} />
+        <HeaderMemo page={this.state.page} />
         <div className="wrapCtn">
        <FaUser className="userHeadIcon"/> 
         <Form

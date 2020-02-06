@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaSignOutAlt, FaUserAlt, FaUnlock, FaPen} from "react-icons/fa";
-
+import { FaSignOutAlt, FaUserAlt, FaUnlock, FaPen } from "react-icons/fa";
 
 const Header = ({ page, decodedToken, logOut }) => {
   let email;
@@ -15,10 +14,10 @@ const Header = ({ page, decodedToken, logOut }) => {
     content = (
       <>
         <Link className="links" to="/login">
-        <FaUnlock/>  Log in 
+          <FaUnlock /> Log in
         </Link>
         <Link className="links" to="/register">
-          <FaPen/> Register 
+          <FaPen /> Register
         </Link>
       </>
     );
@@ -27,9 +26,11 @@ const Header = ({ page, decodedToken, logOut }) => {
   if (page === "todo") {
     content = (
       <>
-        <span style={{ color: "white", margin:"0 10px" }}><FaUserAlt/> {email}</span>
-        <Link to="/login" onClick={logOut} className="logOutBtn links">
-          <FaSignOutAlt/> Log out
+        <span style={{ color: "white", margin: "0 10px" }}>
+          <FaUserAlt /> {email}
+        </span>
+        <Link to="/" onClick={logOut} className="logOutBtn links">
+          <FaSignOutAlt /> Log out
         </Link>
       </>
     );
@@ -38,4 +39,6 @@ const Header = ({ page, decodedToken, logOut }) => {
   return <nav className="header">{content}</nav>;
 };
 
-export default Header;
+let HeaderMemo = React.memo(Header);
+
+export default HeaderMemo;

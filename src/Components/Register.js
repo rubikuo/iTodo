@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import axios from "axios";
 import { Redirect, Link } from "react-router-dom";
-import Header from "./Header";
+import HeaderMemo from "./Header";
 import Form from "./Form";
 import { FaClipboard, FaUnlock} from "react-icons/fa";
 
@@ -93,7 +93,7 @@ export default class Register extends Component {
         <Helmet>
           <title>Register</title>
         </Helmet>
-        <Header page={this.state.page} />
+        <HeaderMemo page={this.state.page} />
         <div className="wrapCtn">
         <FaClipboard className="userHeadIcon"/> 
         <Form
