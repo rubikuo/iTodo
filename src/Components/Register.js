@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import axios from "axios";
-import { css } from "glamor";
 import { Redirect, Link } from "react-router-dom";
+import Header from "./Header";
+import Form from "./Form";
+import { FaClipboard, FaUnlock} from "react-icons/fa";
+
 
 // to push new user info to server
 export default class Register extends Component {
@@ -12,11 +15,18 @@ export default class Register extends Component {
       email: "",
       password: "",
       error: null,
-      registered: false
+      registered: false,
+      login: false,
+      page: "register",
+      eyeOpen: "block",
+      eyeClose: "none",
+      inputType:"password"
     };
+
     this.onSubmit = this.onSubmit.bind(this);
     this.onEmailChange = this.onEmailChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
+    this.onEyeChange = this.onEyeChange.bind(this);
   }
 
   onSubmit(e) {
@@ -52,17 +62,16 @@ export default class Register extends Component {
     this.setState({ password: e.target.value });
   }
 
+  onEyeChange(e){
+    if(this.state.eyeOpen ==="none"){
+      this.setState({eyeOpen:"block", eyeClose:"none", inputType:"password"})
+    }else{
+      this.setState({eyeOpen:"none", eyeClose:"block", inputType:"text"})
+    }
+     
+  }
+
   render() {
-    let cssStyle = css({
-      color: "blue",
-      backgroundColor: "pink",
-      height: "3rem",
-      width: "5rem",
-      ":hover": {
-        color: "white",
-        backgroundColor: "black"
-      }
-    });
     if (this.state.registered) {
       return <Redirect to="/login" />;
     }
@@ -71,8 +80,8 @@ export default class Register extends Component {
 
     if (this.state.error === "User with that email address exists") {
       showMsg = (
-        <p>
-          {this.state.error}, Go to <Link to="/login">Log In</Link>
+        <p style={{color:"white"}}>
+          {this.state.error}, Go to <Link className="links" to="/login"> <FaUnlock/> Log In</Link>
         </p>
       );
     } else if (this.state.error) {
@@ -84,26 +93,18 @@ export default class Register extends Component {
         <Helmet>
           <title>Register</title>
         </Helmet>
-        <form onSubmit={this.onSubmit}>
-          <label>Email</label>
-          <input
-            type="email"
-            onChange={this.onEmailChange}
-            value={this.state.email}
-          />
-
-          <label>Password</label>
-          <input
-            type="password"
-            onChange={this.onPasswordChange}
-            value={this.state.password}
-          />
-
-          <button className={cssStyle} type="submit">
-            Register
-          </button>
-        </form>
+        <Header page={this.state.page} />
+        <div className="wrapCtn">
+        <FaClipboard className="userHeadIcon"/> 
+        <Form
+          onSubmit={this.onSubmit}
+          onEmailChange={this.onEmailChange}
+          onPasswordChange={this.onPasswordChange}
+          onEyeChange ={this.onEyeChange}
+          {...this.state}
+        />
         {showMsg}
+        </div>
       </div>
     );
   }

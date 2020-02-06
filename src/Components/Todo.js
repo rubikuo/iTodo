@@ -6,6 +6,7 @@ import { token$, updateToken } from "./Store";
 import { Redirect } from "react-router-dom";
 import jwt from "jsonwebtoken";
 import { FaPlusCircle, FaTrash } from "react-icons/fa";
+import Header from "./Header";
 
 export default class Todo extends Component {
   constructor(props) {
@@ -15,7 +16,9 @@ export default class Todo extends Component {
       decodedToken: "",
       todos: [],
       addContent: "",
-      check:""
+      check:"",
+      login: true,
+      page: "todo"
     };
     this.addTodo = this.addTodo.bind(this);
     this.submitTodo = this.submitTodo.bind(this);
@@ -61,9 +64,7 @@ export default class Todo extends Component {
   }
 
   handleCheck(e){
-
     e.target.classList.toggle("checked")
-
   }
 
   logOut() {
@@ -87,6 +88,7 @@ export default class Todo extends Component {
       .then(response => {
         console.log(response);
         this.fetchData();
+        this.setState({addContent:""})
       })
       .catch(err => {
         console.log(err);
@@ -142,13 +144,13 @@ export default class Todo extends Component {
               }}
               className="deleteBtn"
             >
-              <FaTrash />
+              <FaTrash size="1rem"/>
             </button>
           </li>
         );
       })
     ) : (
-      <div>Please add item</div>
+      null
     );
 
     return (
@@ -156,10 +158,13 @@ export default class Todo extends Component {
         <Helmet>
           <title>Todo List</title>
         </Helmet>
+        <Header decodedToken={this.state.decodedToken} page={this.state.page} logOut={this.logOut}/>
         {/* <h1>Welcome {email}</h1> */}
-        <h2 className="center blue-text">Todo</h2>
+        <div className="wrapCtn">
+        <h2 className="todoHeader">Todo</h2>
         <form onSubmit={this.submitTodo} className="todoForm">
           <input
+            placeholder="Something to do..."
             onChange={this.addTodo}
             type="text"
             value={this.state.addContent}
@@ -169,9 +174,7 @@ export default class Todo extends Component {
           </button>
         </form>
         <ul className="collection with-header todoContent">{renderTodo}</ul>
-        <button onClick={this.logOut} className="logOutBtn">
-          Log Out
-        </button>
+        </div>
       </div>
     );
   }

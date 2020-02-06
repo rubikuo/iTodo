@@ -4,32 +4,59 @@
   padding: 0;
 }
 
+body {
+  background-color: rgb(73, 73, 73);
+}
+
 .App {
   text-align: center;
 }
 
 .container,
 .homeContainer {
-  width: 90vw;
-  height: 90vh;
-  border: 1px solid black;
+  width: 95vw;
+  height: 95vh;
+  font-size: 1.2rem;
 }
+
+.header{
+  width: 100%;
+  height: 12vh;
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+ .links{
+  margin: 0 10px;
+  text-decoration: none;
+  color: rgb(30, 148, 245);
+}
+
+.links:visited{
+ color: rgb(154, 248, 255);
+}
+
+
+
 
 .homeContainer {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
+
 .smlCtn {
   width: 30%;
   height: 30%;
-  border: 1px solid blue;
+  color: rgb(0, 244, 249);
+  border: 1px solid white;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 20px;
   text-decoration: none;
-  background-color: rgba(66, 66, 119, 0.289);
+  background-color: rgba(1, 1, 1, 0.289);
 }
 
 .container {
@@ -38,26 +65,91 @@
   justify-content: center;
 }
 
+.wrapCtn{
+  height: 78vh;
+  width: 100%;
+  text-align: center;
+}
+
+
+.userHeadIcon {
+  height: 10rem;
+  width:  10rem;
+  padding: 7px;
+  margin-bottom: 5px;
+  color: rgb(220, 220, 220);
+  background-color: rgb(0, 134, 167);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid rgb(131, 154, 159);
+  box-shadow: 2px 2px 2px rgb(74, 72, 72);
+}
+
 form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 35%;
-  height: 50%;
-  background-color: rgba(141, 165, 163, 0.488);
-  border-radius: 20px;
+  width: 30%;
+  min-width: 300px;
+  height:50%;
+  padding-bottom: 10%;
+  border-radius: 20px 20px 0 0;
 }
+
+input {
+  font-size: 1.2rem;
+  color: white;
+  padding: 10px;
+}
+
+::placeholder{
+  color: rgb(229, 229, 229);
+}
+
+button.registerBtn,
+button.loginBtn {
+  border-radius: 20px;
+  margin-top: 10px;
+  width: 100%;
+  font-size: 1.1rem;
+  line-height: 2rem;
+}
+
+.todoHeader{
+  color: rgb(74, 219, 252);
+}
+
 
 form.todoForm {
   width: 50%;
-  height: 10%;
-  padding: 15px;
+  height: 15%;
+  padding: 10px;
   flex-direction: row;
-  background-color: rgba(141, 165, 163, 0.488);
+  background-color: rgb(141, 165, 163);
+  position: relative;
+}
+
+form.todoForm::after{
+  content: "";
+  display: block;
+  width: 7rem;
+  height: 7rem;
+  border: 2px solid white;
+  position: absolute;
+  top: -80%;
+  border-radius: 50%;
+  z-index: -100;
 }
 
 form.todoForm input {
   width: 80%;
+  height: 2rem;
+  padding: 10px 20px;
+  border: none;
+  border-bottom: 1px solid white;
+  background-color: transparent;
 }
 
 form.todoForm button {
@@ -65,31 +157,58 @@ form.todoForm button {
   border: none;
 }
 
-label {
-  margin: 5px auto 10px auto;
-}
 
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+input[type="text"]{
   margin: 10px auto 10px auto;
-  width: 80%;
+  width: 100%;
   line-height: 1rem;
   padding: 10px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid white;
 }
-
+  
 .todoContent {
   width: 50%;
-  height: 50%;
-  background-color: rgba(0, 128, 128, 0.673);
-  margin: 10px auto;
+  height: 80%;
+  background-color: #273c75;
+  margin: 0px auto;
   overflow: scroll;
+  border-radius: 0 0 20px 20px;
 }
 
+.inputDiv{
+  position: relative;
+  width: 100%;
+}
+.eyeIcon {
+  font-size: 1.2rem;
+  position: absolute;
+  top: 40%;
+  right: 3%;
+}
+
+
+/* Remove margins and padding from the list */
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the list items */
 ul li.item {
   display: flex;
   justify-content: space-between;
   position: relative;
   cursor: pointer;
+  padding: 10px 20px 10px 50px;
+  background: #eee;
+  font-size: 1.2rem;
+  transition: 0.2s;
+  display: flex;
+  justify-content: space-between;
 
   /* make the list items unselectable */
   -webkit-user-select: none;
@@ -98,23 +217,43 @@ ul li.item {
   user-select: none;
 }
 
-ul li.checked::before{
-content: "";
-position: absolute;
-border-color: rgb(14, 14, 14);
-border-style: solid;
-border-width: 0 2px 2px 0;
-top: 10px;
-left: 16px;
-transform: rotate(45deg);
-height: 15px;
-width: 7px;
+/* Set all odd list items to a different color (zebra-stripes) */
+ul li:nth-child(odd) {
+  background: #fefefe;
 }
 
-input[type="checkbox"] {
-  border: 1px solid black;
+/* Darker background-color on hover */
+ul li:hover {
+  background: rgb(201, 201, 201);
 }
 
-.deleteBtn {
+/* When clicked on, add a background color and strike out text */
+ul li.checked {
+  background: #888;
+  color: #fff;
+  text-decoration: line-through;
+}
+
+ul li.checked::before {
+  content: "";
+  position: absolute;
+  border-color: rgb(14, 14, 14);
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+
+button.deleteBtn {
   border: none;
+  margin: 0;
+  background-color: transparent;
+}
+
+input:focus,
+button:focus {
+  outline: none;
 }
