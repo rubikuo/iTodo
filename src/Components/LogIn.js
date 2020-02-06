@@ -5,7 +5,7 @@ import { token$, updateToken } from "./Store";
 import { Redirect } from "react-router-dom";
 import Header from "./Header";
 import Form from "./Form";
-import {FaUser} from "react-icons/fa"
+import {FaUser, FaInfoCircle} from "react-icons/fa"
 
 // get method
 // post method
@@ -80,9 +80,9 @@ export default class LogIn extends Component {
     if (this.state.token) {
       return <Redirect to="/" />;
     }
-    let errorMsg = null;
+    let showMsg;
     if (this.state.error) {
-      errorMsg = "Invalid login values";
+      showMsg = <p style={{color: "white"}}><FaInfoCircle /> Invalid login information</p>;
     }
 
     return (
@@ -100,7 +100,7 @@ export default class LogIn extends Component {
           onEyeChange ={this.onEyeChange}
           {...this.state}
         />
-         <p>{errorMsg}</p>
+         {showMsg}
          </div>
       </div>
     );

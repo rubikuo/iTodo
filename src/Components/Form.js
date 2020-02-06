@@ -1,5 +1,5 @@
 import React from "react";
-import {FaEye, FaEyeSlash} from "react-icons/fa"
+// import {FaEye, FaEyeSlash} from "react-icons/fa"
 
 
 const Form = ({
@@ -38,8 +38,8 @@ const Form = ({
         onChange={onPasswordChange}
         value={password}
       />
-      <i className="eyeIcon" onClick={onEyeChange} style={{display: eyeOpen}}><FaEye /></i>
-      <i className="eyeIcon" onClick={onEyeChange} style = {{display: eyeClose}}><FaEyeSlash /></i>
+      {/* <i className="eyeIcon" onClick={onEyeChange} style={{display: eyeOpen}}><FaEye /></i>
+      <i className="eyeIcon" onClick={onEyeChange} style = {{display: eyeClose}}><FaEyeSlash /></i> */}
       </div>
       {button}
     </form>

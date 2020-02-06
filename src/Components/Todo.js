@@ -134,7 +134,7 @@ export default class Todo extends Component {
           <li
             key={todo.id}
             id={todo.id}
-            className={`collection-item item ${check}`}
+            className={`item ${check}`}
             onClick={(e)=>{this.handleCheck(e)}}
           >
             {todo.content}
