@@ -15,7 +15,7 @@ body {
 .container,
 .homeContainer {
   width: 95vw;
-  height: 95vh;
+  height: 100vh;
   font-size: 1.2rem;
 }
 
@@ -169,6 +169,7 @@ input[type="text"]{
   
 .todoContent {
   width: 50%;
+  min-width: 300px;
   height: 75%;
   background-color: #495a87;
   margin: 0px auto;
@@ -253,4 +254,8 @@ button.deleteBtn {
 input:focus,
 button:focus {
   outline: none;
+}
+
+.footer{
+  margin: 10px auto;
 }

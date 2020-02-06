@@ -4,8 +4,7 @@ import axios from "axios";
 import { Redirect, Link } from "react-router-dom";
 import HeaderMemo from "./Header";
 import Form from "./Form";
-import { FaClipboard, FaUnlock} from "react-icons/fa";
-
+import { FaClipboard, FaUnlock } from "react-icons/fa";
 
 // to push new user info to server
 export default class Register extends Component {
@@ -20,7 +19,7 @@ export default class Register extends Component {
       page: "register",
       eyeOpen: "block",
       eyeClose: "none",
-      inputType:"password"
+      inputType: "password"
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -62,13 +61,16 @@ export default class Register extends Component {
     this.setState({ password: e.target.value });
   }
 
-  onEyeChange(e){
-    if(this.state.eyeOpen ==="none"){
-      this.setState({eyeOpen:"block", eyeClose:"none", inputType:"password"})
-    }else{
-      this.setState({eyeOpen:"none", eyeClose:"block", inputType:"text"})
+  onEyeChange(e) {
+    if (this.state.eyeOpen === "none") {
+      this.setState({
+        eyeOpen: "block",
+        eyeClose: "none",
+        inputType: "password"
+      });
+    } else {
+      this.setState({ eyeOpen: "none", eyeClose: "block", inputType: "text" });
     }
-     
   }
 
   render() {
@@ -80,8 +82,12 @@ export default class Register extends Component {
 
     if (this.state.error === "User with that email address exists") {
       showMsg = (
-        <p style={{color:"white"}}>
-          {this.state.error}, Go to <Link className="links" to="/login"> <FaUnlock/> Log In</Link>
+        <p style={{ color: "white" }}>
+          {this.state.error}, Go to{" "}
+          <Link className="links" to="/login">
+            {" "}
+            <FaUnlock /> Log In
+          </Link>
         </p>
       );
     } else if (this.state.error) {
@@ -95,15 +101,15 @@ export default class Register extends Component {
         </Helmet>
         <HeaderMemo page={this.state.page} />
         <div className="wrapCtn">
-        <FaClipboard className="userHeadIcon"/> 
-        <Form
-          onSubmit={this.onSubmit}
-          onEmailChange={this.onEmailChange}
-          onPasswordChange={this.onPasswordChange}
-          onEyeChange ={this.onEyeChange}
-          {...this.state}
-        />
-        {showMsg}
+          <FaClipboard className="userHeadIcon" />
+          <Form
+            onSubmit={this.onSubmit}
+            onEmailChange={this.onEmailChange}
+            onPasswordChange={this.onPasswordChange}
+            onEyeChange={this.onEyeChange}
+            {...this.state}
+          />
+          {showMsg}
         </div>
       </div>
     );
