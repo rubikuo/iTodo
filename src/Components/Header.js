@@ -1,37 +1,56 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaSignOutAlt, FaUserAlt, FaUnlock, FaPen } from "react-icons/fa";
+import {
+  FaSignOutAlt,
+  FaUserAlt,
+  FaUnlock,
+  FaPen,
+  FaClipboardList
+} from "react-icons/fa";
+import jwt from "jsonwebtoken";
 
-const Header = ({ page, decodedToken, logOut }) => {
+const Header = ({ page, logOut, token }) => {
   let email;
-  if (decodedToken) {
-    email = decodedToken.email;
+  if (token) {
+    let decoded = jwt.decode(token);
+    email = decoded.email;
   }
-  console.log(email);
+
   let content;
 
-  if (page === "register" || page === "logIn") {
+  if (page === "register" || page === "logIn" || token === null) {
     content = (
       <>
-        <Link className="links" to="/login">
-          <FaUnlock /> Log in
+        <Link to="/" className="links logo">
+          iToDo
         </Link>
-        <Link className="links" to="/register">
-          <FaPen /> Register
-        </Link>
+        <div className="linksCtn">
+          <Link className="links" to="/login">
+            <FaUnlock /> Log in
+          </Link>
+          <Link className="links" to="/register">
+            <FaPen /> Register
+          </Link>
+        </div>
       </>
     );
   }
 
-  if (page === "todo") {
+  if (token) {
     content = (
       <>
-        <span style={{ color: "white", margin: "0 10px" }}>
-          <FaUserAlt /> {email}
-        </span>
-        <Link to="/" onClick={logOut} className="logOutBtn links">
-          <FaSignOutAlt /> Log out
+        <Link to="/" className="links logo">
+          iToDo
         </Link>
+
+        <div className="linksCtn">
+          <span style={{ color: "white", margin: "0 10px" }}>
+            <FaUserAlt /> {email}
+          </span>
+          <Link to="/" onClick={logOut} className="logOutBtn links">
+            <FaSignOutAlt /> Log out
+          </Link>
+        </div>
       </>
     );
   }

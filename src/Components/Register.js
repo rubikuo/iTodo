@@ -21,14 +21,9 @@ export default class Register extends Component {
       eyeClose: "none",
       inputType: "password"
     };
-
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onEmailChange = this.onEmailChange.bind(this);
-    this.onPasswordChange = this.onPasswordChange.bind(this);
-    this.onEyeChange = this.onEyeChange.bind(this);
   }
 
-  onSubmit(e) {
+  onSubmit = e => {
     e.preventDefault();
     if (this.state.email === "" || this.state.password === "") return;
 
@@ -51,17 +46,17 @@ export default class Register extends Component {
           this.setState({ error: err.response.data.message });
         }
       });
-  }
+  };
 
-  onEmailChange(e) {
+  onEmailChange = e => {
     this.setState({ email: e.target.value });
-  }
+  };
 
-  onPasswordChange(e) {
+  onPasswordChange = e => {
     this.setState({ password: e.target.value });
-  }
+  };
 
-  onEyeChange(e) {
+  onEyeChange = e => {
     if (this.state.eyeOpen === "none") {
       this.setState({
         eyeOpen: "block",
@@ -71,7 +66,7 @@ export default class Register extends Component {
     } else {
       this.setState({ eyeOpen: "none", eyeClose: "block", inputType: "text" });
     }
-  }
+  };
 
   render() {
     if (this.state.registered) {
@@ -83,9 +78,8 @@ export default class Register extends Component {
     if (this.state.error === "User with that email address exists") {
       showMsg = (
         <p style={{ color: "white" }}>
-          {this.state.error}, Go to{" "}
+          {this.state.error}, Go to
           <Link className="links" to="/login">
-            {" "}
             <FaUnlock /> Log In
           </Link>
         </p>

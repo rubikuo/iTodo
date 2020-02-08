@@ -5,7 +5,7 @@ import { token$, updateToken } from "./Store";
 import { Redirect } from "react-router-dom";
 import HeaderMemo from "./Header";
 import Form from "./Form";
-import {FaUser, FaInfoCircle} from "react-icons/fa"
+import { FaUser, FaInfoCircle } from "react-icons/fa";
 
 // get method
 // post method
@@ -21,13 +21,8 @@ export default class LogIn extends Component {
       page: "logIn",
       eyeOpen: "block",
       eyeClose: "none",
-      inputType:"password"
+      inputType: "password"
     };
-
-    this.onEmailChange = this.onEmailChange.bind(this);
-    this.onPasswordChange = this.onPasswordChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onEyeChange = this.onEyeChange.bind(this);
   }
 
   componentDidMount() {
@@ -40,24 +35,27 @@ export default class LogIn extends Component {
     this.subscription.unsubscribe();
   }
 
-  onEmailChange(e) {
+  onEmailChange = e => {
     this.setState({ email: e.target.value });
-  }
+  };
 
-  onPasswordChange(e) {
+  onPasswordChange = e => {
     this.setState({ password: e.target.value });
-  }
+  };
 
-  onEyeChange(e){
-    if(this.state.eyeOpen ==="none"){
-      this.setState({eyeOpen:"block", eyeClose:"none", inputType:"password"})
-    }else{
-      this.setState({eyeOpen:"none", eyeClose:"block", inputType:"text"})
+  onEyeChange = e => {
+    if (this.state.eyeOpen === "none") {
+      this.setState({
+        eyeOpen: "block",
+        eyeClose: "none",
+        inputType: "password"
+      });
+    } else {
+      this.setState({ eyeOpen: "none", eyeClose: "block", inputType: "text" });
     }
-     
-  }
+  };
 
-  onSubmit(e) {
+  onSubmit = e => {
     e.preventDefault();
     let authData = {
       email: this.state.email,
@@ -74,7 +72,7 @@ export default class LogIn extends Component {
         this.setState({ error: true });
         console.error(err);
       });
-  }
+  };
 
   render() {
     if (this.state.token) {
@@ -82,7 +80,11 @@ export default class LogIn extends Component {
     }
     let showMsg;
     if (this.state.error) {
-      showMsg = <p style={{color: "white"}}><FaInfoCircle /> Invalid login information</p>;
+      showMsg = (
+        <p style={{ color: "white" }}>
+          <FaInfoCircle /> Invalid login information
+        </p>
+      );
     }
 
     return (
@@ -92,16 +94,16 @@ export default class LogIn extends Component {
         </Helmet>
         <HeaderMemo page={this.state.page} />
         <div className="wrapCtn">
-       <FaUser className="userHeadIcon"/> 
-        <Form
-          onSubmit={this.onSubmit}
-          onEmailChange={this.onEmailChange}
-          onPasswordChange={this.onPasswordChange}
-          onEyeChange ={this.onEyeChange}
-          {...this.state}
-        />
-         {showMsg}
-         </div>
+          <FaUser className="userHeadIcon" />
+          <Form
+            onSubmit={this.onSubmit}
+            onEmailChange={this.onEmailChange}
+            onPasswordChange={this.onPasswordChange}
+            onEyeChange={this.onEyeChange}
+            {...this.state}
+          />
+          {showMsg}
+        </div>
       </div>
     );
   }

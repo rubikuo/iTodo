@@ -1,7 +1,6 @@
 import React from "react";
 // import {FaEye, FaEyeSlash} from "react-icons/fa"
 
-
 const Form = ({
   onSubmit,
   onEmailChange,
@@ -11,8 +10,8 @@ const Form = ({
   password,
   page,
   eyeOpen,
-  eyeClose, 
-  inputType,
+  eyeClose,
+  inputType
 }) => {
   let button;
   if (page === "register") {
@@ -20,25 +19,23 @@ const Form = ({
   } else if (page === "logIn") {
     button = <button className="registerBtn"> Log In </button>;
   }
-   
-  
+
   return (
     <form onSubmit={onSubmit}>
-      
       <input
         placeholder="Email"
         type="email"
         onChange={onEmailChange}
-        value= {email}
+        value={email}
       />
-      <div className ="inputDiv">
-      <input
-        placeholder="Password"
-        type={inputType}
-        onChange={onPasswordChange}
-        value={password}
-      />
-      {/* <i className="eyeIcon" onClick={onEyeChange} style={{display: eyeOpen}}><FaEye /></i>
+      <div className="inputDiv">
+        <input
+          placeholder="Password"
+          type={inputType}
+          onChange={onPasswordChange}
+          value={password}
+        />
+        {/* <i className="eyeIcon" onClick={onEyeChange} style={{display: eyeOpen}}><FaEye /></i>
       <i className="eyeIcon" onClick={onEyeChange} style = {{display: eyeClose}}><FaEyeSlash /></i> */}
       </div>
       {button}

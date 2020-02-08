@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import axios from "axios";
 import { token$, updateToken } from "./Store";
 import { Redirect } from "react-router-dom";
-import jwt from "jsonwebtoken";
+
 import { FaPlusCircle, FaTrash } from "react-icons/fa";
 import HeaderMemo from "./Header";
 
@@ -13,7 +13,6 @@ export default class Todo extends Component {
     super(props);
     this.state = {
       token: token$.value,
-      decodedToken: "",
       todos: [],
       addContent: "",
       check: "",
@@ -21,22 +20,18 @@ export default class Todo extends Component {
       page: "todo",
       errorMsg: ""
     };
-    this.addTodo = this.addTodo.bind(this);
-    this.submitTodo = this.submitTodo.bind(this);
-    this.deleteItem = this.deleteItem.bind(this);
-    this.fetchData = this.fetchData.bind(this);
-    this.handleCheck = this.handleCheck.bind(this);
   }
 
   componentDidMount() {
     this.subscription = token$.subscribe(token => {
-      const decoded = jwt.decode(token);
-      this.setState({ token, decodedToken: decoded });
+      // const decoded = jwt.decode(token);
+      // this.setState({ token, decodedToken: decoded });
+      this.setState({ token });
     });
     this.fetchData();
   }
 
-  fetchData() {
+  fetchData = () => {
     let { token } = this.state;
     let CancelToken = axios.CancelToken;
     this.source = CancelToken.source();
@@ -62,17 +57,17 @@ export default class Todo extends Component {
           }
         });
     }
-  }
+  };
 
-  handleCheck(e) {
+  handleCheck = e => {
     e.target.classList.toggle("checked");
-  }
+  };
 
-  logOut() {
+  logOut = () => {
     updateToken(null);
-  }
+  };
 
-  submitTodo(e) {
+  submitTodo = e => {
     e.preventDefault();
     if (this.state.email === "" || this.state.password === "") return;
 
@@ -100,13 +95,13 @@ export default class Todo extends Component {
         console.log(err.response.data);
         this.setState({ errorMsg: err.response.data.details[0].message });
       });
-  }
+  };
 
-  addTodo(e) {
+  addTodo = e => {
     this.setState({ addContent: e.target.value });
-  }
+  };
 
-  deleteItem(id) {
+  deleteItem = id => {
     axios
       .delete(`http://3.120.96.16:3002/todos/${id}`, {
         headers: {
@@ -119,7 +114,7 @@ export default class Todo extends Component {
           todos: this.state.todos.filter(t => t.id !== id)
         });
       });
-  }
+  };
 
   componentWillUnmount() {
     this.source.cancel();
@@ -132,7 +127,6 @@ export default class Todo extends Component {
     if (!this.state.token) {
       return <Redirect to="/" />;
     }
-    // let email = this.state.decodedToken.email;
 
     let { todos } = this.state;
     let { check } = this.state;
@@ -167,13 +161,8 @@ export default class Todo extends Component {
         <Helmet>
           <title>Todo List</title>
         </Helmet>
-        <HeaderMemo
-          decodedToken={this.state.decodedToken}
-          page={this.state.page}
-          logOut={this.logOut}
-        />
+        <HeaderMemo token={this.state.token} logOut={this.logOut} />
         <div className="wrapCtn">
-          <h2 className="todoHeader">Todo</h2>
           <form onSubmit={this.submitTodo} className="todoForm">
             <input
               placeholder="Something to do..."
@@ -185,7 +174,7 @@ export default class Todo extends Component {
               <FaPlusCircle size="2rem" />
             </button>
           </form>
-          <ul className="collection with-header todoContent">{renderTodo}</ul>
+          <ul className="todoContent">{renderTodo}</ul>
         </div>
         {showMsg}
       </div>
