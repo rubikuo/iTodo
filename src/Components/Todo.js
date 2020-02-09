@@ -4,9 +4,10 @@ import { Helmet } from "react-helmet";
 import axios from "axios";
 import { token$, updateToken } from "./Store";
 import { Redirect } from "react-router-dom";
-
-import { FaPlusCircle, FaTrash } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 import HeaderMemo from "./Header";
+import TodoForm from "./TodoForm";
+import styles from "./Todo.module.css";
 
 export default class Todo extends Component {
   constructor(props) {
@@ -24,8 +25,6 @@ export default class Todo extends Component {
 
   componentDidMount() {
     this.subscription = token$.subscribe(token => {
-      // const decoded = jwt.decode(token);
-      // this.setState({ token, decodedToken: decoded });
       this.setState({ token });
     });
     this.fetchData();
@@ -84,7 +83,7 @@ export default class Todo extends Component {
       .then(response => {
         // the response is the data we added so we an directly add it to the state without fetching the data from the server
         console.log(response.data);
-        // this.fetchData();
+        // this.fetchData(); // instead of fetching data from server again its better to render the data from client side directly
 
         this.setState({
           addContent: "",
@@ -137,7 +136,7 @@ export default class Todo extends Component {
             <li
               key={todo.id}
               id={todo.id}
-              className={`item ${check}`}
+              className={`${styles.item} ${check}`}
               onClick={e => {
                 this.handleCheck(e);
               }}
@@ -147,7 +146,7 @@ export default class Todo extends Component {
                 onClick={() => {
                   this.deleteItem(todo.id);
                 }}
-                className="deleteBtn"
+                className={styles.deleteBtn}
               >
                 <FaTrash size="1rem" />
               </button>
@@ -163,18 +162,12 @@ export default class Todo extends Component {
         </Helmet>
         <HeaderMemo token={this.state.token} logOut={this.logOut} />
         <div className="wrapCtn">
-          <form onSubmit={this.submitTodo} className="todoForm">
-            <input
-              placeholder="Something to do..."
-              onChange={this.addTodo}
-              type="text"
-              value={this.state.addContent}
-            />
-            <button>
-              <FaPlusCircle size="2rem" />
-            </button>
-          </form>
-          <ul className="todoContent">{renderTodo}</ul>
+          <TodoForm
+            submitTodo={this.submitTodo}
+            addTodo={this.addTodo}
+            addContent={this.state.addContent}
+          />
+          <ul className={styles.todoContent}>{renderTodo}</ul>
         </div>
         {showMsg}
       </div>

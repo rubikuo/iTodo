@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./Form.module.css"
 // import {FaEye, FaEyeSlash} from "react-icons/fa"
 
 const Form = ({
@@ -15,9 +16,9 @@ const Form = ({
 }) => {
   let button;
   if (page === "register") {
-    button = <button className="registerBtn"> Register </button>;
+    button = <button className={styles.registerBtn}> Register </button>;
   } else if (page === "logIn") {
-    button = <button className="registerBtn"> Log In </button>;
+    button = <button className={styles.loginBtn}> Log In </button>;
   }
 
   return (
@@ -28,7 +29,7 @@ const Form = ({
         onChange={onEmailChange}
         value={email}
       />
-      <div className="inputDiv">
+      <div className={styles.inputDiv}>
         <input
           placeholder="Password"
           type={inputType}

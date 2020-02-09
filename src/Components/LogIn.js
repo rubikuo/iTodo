@@ -7,8 +7,7 @@ import HeaderMemo from "./Header";
 import Form from "./Form";
 import { FaUser, FaInfoCircle } from "react-icons/fa";
 
-// get method
-// post method
+// get method // post method
 export default class LogIn extends Component {
   constructor(props) {
     super(props);

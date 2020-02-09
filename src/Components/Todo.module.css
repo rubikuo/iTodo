@@ -1,0 +1,97 @@
+
+  .todoForm {
+  width: 50%;
+  height: 15%;
+  padding: 20px;
+  flex-direction: row;
+  background-color: rgb(141, 165, 163);
+  position: relative;
+}
+
+.todoInput {
+  width: 80%;
+  height: 2rem;
+  padding: 15px 20px;
+  border: none;
+  border-bottom: 1px solid white;
+  background-color: transparent;
+}
+
+.addBtn {
+  background-color: transparent;
+  border: none;
+}
+
+
+.todoContent {
+  width: 50%;
+  min-width: 300px;
+  height: 75%;
+  background-color: #495a87;
+  margin: 0px auto;
+  overflow: scroll;
+}
+
+
+/* Remove margins and padding from the list */
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the list items */
+  .item {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  cursor: pointer;
+  color: rgb(249, 249, 249);
+  padding: 10px 20px 10px 50px;
+  background: rgb(122, 119, 119);
+  font-size: 1.2rem;
+  transition: 0.2s;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dotted grey;
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.item::after{
+  content: "";
+  position: absolute;
+  border-color: rgba(199, 198, 198, 0.214);
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+
+
+/* Set all odd list items to a different color (zebra-stripes) */
+ul li:nth-child(even) {
+  background: #7a8485;
+}
+
+/* Darker background-color on hover */
+ul li:hover {
+  background: rgb(201, 201, 201);
+}
+
+/* When clicked on, add a background color and strike out text */
+
+
+
+button.deleteBtn {
+  border: none;
+  margin: 0;
+  background-color: transparent;
+}
+
+

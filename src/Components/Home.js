@@ -5,6 +5,7 @@ import HeaderMemo from "./Header";
 import { token$, updateToken } from "./Store";
 import { FaAngleRight } from "react-icons/fa";
 import Card from "./Card";
+import styles from "./Home.module.css"
 
 class Home extends Component {
   constructor(props) {
@@ -49,21 +50,21 @@ class Home extends Component {
     if (token === null) {
       renderHome = (
         <>
-          <div className="cardCtn">
+          <div className={styles.cardCtn}>
             {this.state.cards.map(card => (
-              <Card key={card.id} className="card" id={card.name} />
+              <Card key={card.id} className={styles.card} id={card.name} />
             ))}
           </div>
 
-          <div className="smlLinks">
+          <div className={styles.smlLinks}>
             <div>Log In</div>
-            <Link to="/login" className="linkTag">
+            <Link to="/login" className={styles.linkTag}>
               <FaAngleRight />
             </Link>
           </div>
-          <div className="smlLinks">
+          <div className={styles.smlLinks}>
             <div> Register </div>
-            <Link to="/register" className="linkTag">
+            <Link to="/register" className={styles.linkTag}>
               <FaAngleRight />
             </Link>
           </div>

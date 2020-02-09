@@ -1,0 +1,42 @@
+
+.smlLinks{
+    width: 20%;
+    height: 10%;
+    border: 1px solid white;
+    display: inline-flex;
+    align-items: center;
+    margin: 0 10px;
+  }
+  
+  .linkTag{
+    margin: 0;
+    width: 25%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border-left: 1px solid white;
+    color: white;
+  }
+  
+  .cardCtn{
+    width: 60%;
+    height: 60%;
+    display: flex;
+    margin: 15px auto 100px auto;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .card{
+    width: 40%;
+    height: 90%;
+    background-color: rgb(216, 215, 215);
+    border: 1px solid rgb(226, 226, 226);
+    position: absolute;
+    box-shadow: 2px 0px 8px rgb(60, 60, 60);
+  }
+
+  

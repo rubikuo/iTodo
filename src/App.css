@@ -1,3 +1,4 @@
+/* define global css that shares by components */
 * {
   box-sizing: border-box;
   margin: 0 auto;
@@ -8,155 +9,20 @@ body {
   background-color: rgb(99, 97, 97);
 }
 
-.App {
-  text-align: center;
-}
-
-.container,
-.homeContainer {
+.container {
   width: 95vw;
   height: 100vh;
   font-size: 1.2rem;
-}
-
-.header{
-  width: 100%;
-  height: 10vh;
-  display: flex;
-  justify-content: space-between;
-  font-size: 1.3rem;
-}
-
-.logo{
-  font-size: 1.8rem;
-  font-family: 'Permanent Marker', cursive;
-  position: relative;
-}
-
-.logo::before{
-  content: "\f004";
-  position: absolute;
-  font-weight: 900;
-  font-family: "FontAwesome";
-  font-size:0.7rem;
-
-}
-
-.linksCtn{
-  width: 90%;
-  text-align: right;
-}
-
- .links{
-   margin: 0 10px;
-  text-decoration: none;
-  color: rgb(30, 148, 245);
-}
-
-.links:visited{
- color: rgb(154, 248, 255);
-}
-
-.homeContainer {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.smlLinks{
-  width: 20%;
-  height: 10%;
-  border: 1px solid white;
-  display: inline-flex;
-  align-items: center;
-  margin: 0 10px;
-}
-
-.linkTag{
-  margin: 0;
-  width: 25%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  border-left: 1px solid white;
-  color: white;
-}
-
-.cardCtn{
-  width: 60%;
-  height: 60%;
-  display: flex;
-  margin: 15px auto 100px auto;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.card{
-  width: 40%;
-  height: 90%;
-  background-color: rgb(216, 215, 215);
-  border: 1px solid rgb(226, 226, 226);
-  position: absolute;
-  box-shadow: 2px 0px 8px rgb(60, 60, 60);
-}
-
-div#card-one{
-  left: 0;
-  z-index: -1;
-  transform: rotate(15deg);
-
-}
-
-div#card-two{
-  transform: rotate(8deg);
-  left: 32%;
-  height: 100%;
-  z-index: 1;
-}
-
-div#card-three{
-  left: 60% ;
-  transform: rotate(31deg);
-
-}
-
-img{
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-}
-
-.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.wrapCtn{
+.wrapCtn {
   width: 100%;
   height: 75vh;
   margin-top: 20px;
   text-align: center;
-
-}
-
-
-.userHeadIcon {
-  height: 10rem;
-  width:  10rem;
-  padding: 7px;
-  margin-bottom: 5px;
-  color: rgb(220, 220, 220);
-  background-color: rgb(0, 134, 167);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  border: 1px solid rgb(131, 154, 159);
-  box-shadow: 2px 2px 2px rgb(74, 72, 72);
 }
 
 form {
@@ -165,72 +31,13 @@ form {
   justify-content: center;
   width: 30%;
   min-width: 300px;
-  height:60%;
+  height: 60%;
   padding-bottom: 10%;
-  
 }
-
-input {
-  font-size: 1.2rem;
-  color: white;
-  padding: 10px;
-}
-
-::placeholder{
-  color: rgb(229, 229, 229);
-}
-
-button.registerBtn,
-button.loginBtn {
-  border-radius: 20px;
-  margin-top: 10px;
-  width: 100%;
-  font-size: 1.1rem;
-  line-height: 2rem;
-}
-
-
-
-
-form.todoForm {
-  width: 50%;
-  height: 15%;
-  padding: 10px;
-  flex-direction: row;
-  background-color: rgb(141, 165, 163);
-  position: relative;
-}
-
-/* form.todoForm::after{
-  content: "";
-  display: block;
-  width: 7rem;
-  height: 7rem;
-  border: 2px solid white;
-  position: absolute;
-  top: -80%;
-  border-radius: 50%;
-  z-index: -100;
-} */
-
-form.todoForm input {
-  width: 80%;
-  height: 2rem;
-  padding: 10px 20px;
-  border: none;
-  border-bottom: 1px solid white;
-  background-color: transparent;
-}
-
-form.todoForm button {
-  background-color: transparent;
-  border: none;
-}
-
 
 input[type="email"],
 input[type="password"],
-input[type="text"]{
+input[type="text"] {
   margin: 10px auto 10px auto;
   width: 100%;
   line-height: 1rem;
@@ -239,57 +46,46 @@ input[type="text"]{
   border: none;
   border-bottom: 1px solid white;
 }
-  
-.todoContent {
-  width: 50%;
-  min-width: 300px;
-  height: 75%;
-  background-color: #495a87;
-  margin: 0px auto;
-  overflow: scroll;
+
+input:focus,
+button:focus {
+  outline: none;
 }
 
-.inputDiv{
-  position: relative;
+/* in card.js: cards  with id selector */
+div#card-one {
+  left: 0;
+  z-index: -1;
+  transform: rotate(15deg);
+}
+
+div#card-two {
+  transform: rotate(8deg);
+  left: 32%;
+  height: 100%;
+  z-index: 1;
+}
+
+div#card-three {
+  left: 60%;
+  transform: rotate(31deg);
+}
+
+img {
   width: 100%;
-}
-.eyeIcon {
-  font-size: 1.2rem;
-  position: absolute;
-  top: 40%;
-  right: 3%;
+  height: 100%;
+  object-fit: fill;
 }
 
+/* in Todo.js: to control check effect with check variable in the class */
 
-/* Remove margins and padding from the list */
-ul {
-  margin: 0;
-  padding: 0;
+ul li.checked {
+  background: rgb(110, 82, 150);
+  color: rgb(12, 12, 12);
+  text-decoration: line-through;
 }
 
-/* Style the list items */
-ul li.item {
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  cursor: pointer;
-  color: rgb(249, 249, 249);
-  padding: 10px 20px 10px 50px;
-  background: rgb(122, 119, 119);
-  font-size: 1.2rem;
-  transition: 0.2s;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px dotted grey;
-  /* make the list items unselectable */
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-ul li.checked::before,
-ul li.item::after{
+ul li.checked::before {
   content: "";
   position: absolute;
   border-color: rgba(199, 198, 198, 0.214);
@@ -303,41 +99,35 @@ ul li.item::after{
 }
 
 ul li.checked::before {
-  
   border-color: rgb(14, 14, 14);
   z-index: 2;
 }
 
-/* Set all odd list items to a different color (zebra-stripes) */
-ul li:nth-child(even) {
-  background: #7a8485;
+/* in Login.js & Register.js */
+
+.userHeadIcon {
+  height: 10rem;
+  width: 10rem;
+  padding: 7px;
+  margin-bottom: 5px;
+  color: rgb(220, 220, 220);
+  background-color: rgb(0, 134, 167);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid rgb(131, 154, 159);
+  box-shadow: 2px 2px 2px rgb(74, 72, 72);
 }
 
-/* Darker background-color on hover */
-ul li:hover {
-  background: rgb(201, 201, 201);
+.eyeIcon {
+  font-size: 1.2rem;
+  position: absolute;
+  top: 40%;
+  right: 3%;
 }
 
-/* When clicked on, add a background color and strike out text */
-ul li.checked {
-  background: rgb(110, 82, 150);
-  color: rgb(12, 12, 12);
-  text-decoration: line-through;
-}
-
-
-
-button.deleteBtn {
-  border: none;
-  margin: 0;
-  background-color: transparent;
-}
-
-input:focus,
-button:focus {
-  outline: none;
-}
-
-.footer{
+/* in Footer.js */
+.footer {
   margin: 10px auto;
 }

@@ -1,0 +1,27 @@
+
+
+
+.inputDiv {
+  position: relative;
+  width: 100%;
+}
+
+input {
+  font-size: 1.2rem;
+  color: white;
+  padding: 10px;
+}
+
+
+::placeholder {
+  color: rgb(229, 229, 229);
+}
+
+.registerBtn,
+.loginBtn {
+  border-radius: 20px;
+  margin-top: 10px;
+  width: 100%;
+  font-size: 1.1rem;
+  line-height: 2rem;
+}
