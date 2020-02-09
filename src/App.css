@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: rgb(99, 97, 97);
+  background-color: rgb(52, 51, 51);
 }
 
 .container {
@@ -31,14 +31,15 @@ form {
   justify-content: center;
   width: 30%;
   min-width: 300px;
-  height: 60%;
+  height: 55%;
   padding-bottom: 10%;
+  margin-top: 20px;
 }
 
 input[type="email"],
 input[type="password"],
 input[type="text"] {
-  margin: 10px auto 10px auto;
+  margin: 15px auto;
   width: 100%;
   line-height: 1rem;
   padding: 10px;
@@ -68,7 +69,7 @@ div#card-two {
 
 div#card-three {
   left: 60%;
-  transform: rotate(31deg);
+  transform: rotate(-10deg);
 }
 
 img {
@@ -78,7 +79,7 @@ img {
 }
 
 /* in Todo.js: to control check effect with check variable in the class */
-
+/* When clicked on, add a background color and strike out text */
 ul li.checked {
   background: rgb(110, 82, 150);
   color: rgb(12, 12, 12);
@@ -96,11 +97,12 @@ ul li.checked::before {
   transform: rotate(45deg);
   height: 15px;
   width: 7px;
+  z-index: 2;
 }
 
-ul li.checked::before {
+ul li.checked::after {
   border-color: rgb(14, 14, 14);
-  z-index: 2;
+
 }
 
 /* in Login.js & Register.js */
@@ -120,6 +122,13 @@ ul li.checked::before {
   box-shadow: 2px 2px 2px rgb(74, 72, 72);
 }
 
+.links {
+  margin: 0 10px;
+  text-decoration: none;
+  color: rgb(30, 148, 245);
+}
+
+/* password showing control icon */
 .eyeIcon {
   font-size: 1.2rem;
   position: absolute;
@@ -130,4 +139,14 @@ ul li.checked::before {
 /* in Footer.js */
 .footer {
   margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: lightgrey;
+}
+
+.footer span a{
+  color: lightgrey;
+  text-decoration: none;
 }

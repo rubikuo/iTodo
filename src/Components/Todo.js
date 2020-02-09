@@ -121,7 +121,7 @@ export default class Todo extends Component {
   }
 
   render() {
-    let showMsg = <p>{this.state.errorMsg}</p>;
+    let showMsg = <p style={{color:"red"}}>{this.state.errorMsg}</p>;
 
     if (!this.state.token) {
       return <Redirect to="/" />;
@@ -168,8 +168,9 @@ export default class Todo extends Component {
             addContent={this.state.addContent}
           />
           <ul className={styles.todoContent}>{renderTodo}</ul>
+          {showMsg}
         </div>
-        {showMsg}
+    
       </div>
     );
   }

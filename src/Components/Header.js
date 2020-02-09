@@ -5,7 +5,6 @@ import {
   FaUserAlt,
   FaUnlock,
   FaPen,
-  FaClipboardList
 } from "react-icons/fa";
 import jwt from "jsonwebtoken";
 import styles from "./Header.module.css";
@@ -19,7 +18,15 @@ const Header = ({ page, logOut, token }) => {
 
   let content;
 
-  if (page === "register" || page === "logIn" || token === null) {
+  if (token === null) {
+    content = (
+      <Link to="/" className={`${styles.links} ${styles.logo}`}>
+        iToDo
+      </Link>
+    );
+  }
+
+  if (page === "register" || page === "logIn") {
     content = (
       <>
         <Link to="/" className={`${styles.links} ${styles.logo}`}>

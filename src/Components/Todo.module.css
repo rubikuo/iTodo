@@ -1,5 +1,5 @@
 
-  .todoForm {
+.todoForm {
   width: 50%;
   height: 15%;
   padding: 20px;
@@ -11,7 +11,7 @@
 .todoInput {
   width: 80%;
   height: 2rem;
-  padding: 15px 20px;
+  padding-bottom: 30px;
   border: none;
   border-bottom: 1px solid white;
   background-color: transparent;
@@ -40,7 +40,7 @@ ul {
 }
 
 /* Style the list items */
-  .item {
+.item {
   display: flex;
   justify-content: space-between;
   position: relative;
@@ -83,9 +83,6 @@ ul li:nth-child(even) {
 ul li:hover {
   background: rgb(201, 201, 201);
 }
-
-/* When clicked on, add a background color and strike out text */
-
 
 
 button.deleteBtn {

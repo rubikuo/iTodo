@@ -6,7 +6,7 @@ import HeaderMemo from "./Header";
 import Form from "./Form";
 import { FaClipboard, FaUnlock } from "react-icons/fa";
 
-// to push new user info to server
+// to post new user info to server
 export default class Register extends Component {
   constructor(props) {
     super(props);
