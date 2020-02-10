@@ -2,19 +2,20 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import axios from "axios";
-import { token$, updateToken } from "./Store";
+import { token$, updateToken, checkItems$, updateCheckItem } from "./Store";
 import { Redirect } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
 import HeaderMemo from "./Header";
 import TodoForm from "./TodoForm";
 import styles from "./Todo.module.css";
-
+import PopUp from "./PopUp"
 export default class Todo extends Component {
   constructor(props) {
     super(props);
     this.state = {
       token: token$.value,
       todos: [],
+      checkItems: checkItems$.value,
       addContent: "",
       check: "",
       login: true,
@@ -24,9 +25,14 @@ export default class Todo extends Component {
   }
 
   componentDidMount() {
-    this.subscription = token$.subscribe(token => {
-      this.setState({ token });
-    });
+    this.subscriptions = [
+      token$.subscribe(token => {
+        this.setState({ token });
+      }),
+      checkItems$.subscribe((checkItems) => {
+        this.setState({ checkItems });
+      }),
+    ]
     this.fetchData();
   }
 
@@ -59,7 +65,9 @@ export default class Todo extends Component {
   };
 
   handleCheck = e => {
-    e.target.classList.toggle("checked");
+    const id = e.target.id;
+
+    updateCheckItem(id);
   };
 
   logOut = () => {
@@ -117,26 +125,26 @@ export default class Todo extends Component {
 
   componentWillUnmount() {
     this.source.cancel();
-    this.subscription.unsubscribe();
+    this.subscriptions.forEach(s => s.unsubscribe());
   }
-
+  
   render() {
+    console.log(this.state.checkedItems);
     let showMsg = <p style={{color:"red"}}>{this.state.errorMsg}</p>;
-
-    if (!this.state.token) {
-      return <Redirect to="/" />;
-    }
+    
+    
 
     let { todos } = this.state;
     let { check } = this.state;
 
     let renderTodo = todos.length
       ? todos.map(todo => {
+          console.log(check);
           return (
             <li
               key={todo.id}
               id={todo.id}
-              className={`${styles.item} ${check}`}
+              className={`${styles.item} ${this.state.checkItems.has(todo.id) ? "checked" : ""}`}
               onClick={e => {
                 this.handleCheck(e);
               }}
@@ -156,6 +164,7 @@ export default class Todo extends Component {
       : null;
 
     return (
+      <>
       <div className="container">
         <Helmet>
           <title>Todo List</title>
@@ -170,8 +179,11 @@ export default class Todo extends Component {
           <ul className={styles.todoContent}>{renderTodo}</ul>
           {showMsg}
         </div>
-    
+   
       </div>
+      {!this.state.token && <PopUp />}
+      </>
+     
     );
   }
 }

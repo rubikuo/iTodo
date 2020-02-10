@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import HeaderMemo from "./Header";
-import { token$, updateToken } from "./Store";
+import { token$, updateToken, checkItems$ } from "./Store";
 import { FaAngleRight, FaClipboardList } from "react-icons/fa";
 import Card from "./Card";
 import Circle from "./Circle";
@@ -25,14 +25,20 @@ class Home extends Component {
         { id: 2, name: "circle-two" },
         { id: 3, name: "circle-three" }
       ],
-      todos: []
+      todos: [],
+      checkItems: checkItems$.value
     };
   }
 
   componentDidMount() {
-    this.subscription = token$.subscribe(token => {
-      this.setState({ token });
-    });
+    this.subscriptions = [
+      token$.subscribe(token => {
+        this.setState({ token });
+      }),
+      checkItems$.subscribe(checkItems => {
+        this.setState({ checkItems });
+      })
+    ];
     this.fetchData();
   }
 
@@ -59,7 +65,7 @@ class Home extends Component {
   };
 
   componentWillUnmount() {
-    this.subscription.unsubscribe();
+    this.subscriptions.forEach(s => s.unsubscribe());
     this.source.cancel();
   }
 
@@ -68,6 +74,7 @@ class Home extends Component {
   };
 
   render() {
+    console.log("checked items", this.state.checkItems.size);
     const { token } = this.state;
     const { todos } = this.state;
     const todosAmount = todos.length;
@@ -86,7 +93,9 @@ class Home extends Component {
               />
             ))}
           </div>
-          <Link to="/todo" className="links"><FaClipboardList/> Todolist</Link>
+          <Link to="/todo" className="links">
+            <FaClipboardList /> Todolist
+          </Link>
         </>
       );
     }
