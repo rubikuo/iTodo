@@ -1,60 +1,67 @@
+.smlLinks {
+  width: 20%;
+  height: 10%;
+  border: 1px solid white;
+  display: inline-flex;
+  align-items: center;
+  margin: 0 10px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 217, 255);
+}
 
-.smlLinks{
-    width: 20%;
-    height: 10%;
-    border: 1px solid white;
-    display: inline-flex;
-    align-items: center;
-    margin: 0 10px;
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 217, 255);
-  }
-  
-  .linkTag{
-    margin: 0;
-    width: 25%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    border-left: 1px solid white;
-    background-color: rgb(62, 143, 242);
-    color: white;
-  }
-  
-  .cardCtn, .circleCtn{
-    width: 60%;
-    height: 60%;
-    display: flex;
-    margin: 15px auto 100px auto;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-  }
+.linkTag {
+  margin: 0;
+  width: 25%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-left: 1px solid white;
+  background-color: rgb(62, 143, 242);
+  color: white;
+}
 
-  .circleCtn{
-    margin: 15px auto 10px auto;
-  }
+.todoLink{
+  display: flex;
+  margin: 30px auto 0 auto;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  width: 15%;
+  height: 10%;
+  background-color: white;;
+}
 
-  .myCircle{
-    width: 30%;
-  }
- 
-  
-  .card{
-    width: 40%;
-    height: 90%;
-    background-color: rgb(216, 215, 215);
-    border: 1px solid rgb(226, 226, 226);
-    position: absolute;
-    box-shadow: 2px 0px 8px rgb(60, 60, 60);
-  }
+.cardCtn,
+.circleCtn {
+  width: 60%;
+  height: 60%;
+  display: flex;
+  margin: 15px auto 100px auto;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
 
-  .circle{
-    width: 50%;
-    height: 50%;
+.circleCtn {
+  margin: 15px auto 10px auto;
+}
 
-  }
+.myCircle {
+  width: 30%;
+}
 
-  
+.card {
+  width: 40%;
+  height: 90%;
+  background-color: rgb(216, 215, 215);
+  border: 1px solid rgb(226, 226, 226);
+  position: absolute;
+  box-shadow: 2px 0px 8px rgb(60, 60, 60);
+}
+
+.circle {
+  width: 50%;
+  height: 50%;
+}

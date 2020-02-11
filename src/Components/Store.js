@@ -1,4 +1,4 @@
-import { BehaviorSubject, identity } from "rxjs";
+import { BehaviorSubject } from "rxjs";
 
 export const token$ = new BehaviorSubject(localStorage.getItem("token"));
 
@@ -12,12 +12,13 @@ export function updateToken(token) {
 }
 
 
-
+// run load the page only once
 export const checkItems$ = new BehaviorSubject(new Set(JSON.parse(localStorage.getItem("checkItems") || "[]")));
+// run when you call it 
 export function updateCheckItem(item){
   console.log(item);
   const newSet = new Set(Array.from(checkItems$.value));
-
+  // checks if the id is existing
   if (newSet.has(item)) {
     newSet.delete(item);
   } else {

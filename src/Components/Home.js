@@ -8,6 +8,7 @@ import { FaAngleRight, FaClipboardList } from "react-icons/fa";
 import Card from "./Card";
 import Circle from "./Circle";
 import styles from "./Home.module.css";
+import PopUp from "./PopUp";
 
 class Home extends Component {
   constructor(props) {
@@ -26,7 +27,8 @@ class Home extends Component {
         { id: 3, name: "circle-three" }
       ],
       todos: [],
-      checkItems: checkItems$.value
+      checkItems: checkItems$.value,
+      tokenExpired: false
     };
   }
 
@@ -59,7 +61,10 @@ class Home extends Component {
           this.setState({ todos: data });
         })
         .catch(err => {
-          console.log(err);
+          console.log(err.response.statusText);
+          if (err.response.statusText === "Unauthorized") {
+            this.setState({ tokenExpired: true });
+          }
         });
     }
   };
@@ -77,7 +82,7 @@ class Home extends Component {
     console.log("checked items", this.state.checkItems.size);
     const { token } = this.state;
     const { todos } = this.state;
-    const todosAmount = todos.length;
+
     let renderHome;
 
     if (token) {
@@ -90,15 +95,18 @@ class Home extends Component {
                 className={styles.myCircle}
                 id={circle.name}
                 todos={todos}
+                checkItemAmount={this.state.checkItems.size}
               />
             ))}
           </div>
-          <Link to="/todo" className="links">
-            <FaClipboardList /> Todolist
+          <Link to="/todo" className={`links ${styles.todoLink}`}>
+            <FaClipboardList style={{ margin: "0px" }} />{" "}
+            <span style={{ margin: "0px 3px" }}>Todolist</span>
           </Link>
         </>
       );
     }
+
     if (token === null) {
       renderHome = (
         <>
@@ -126,13 +134,16 @@ class Home extends Component {
 
     console.log(this.state.token);
     return (
-      <div className="container">
-        <Helmet>
-          <title>Home</title>
-        </Helmet>
-        <HeaderMemo {...this.state} logOut={this.logOut} />
-        <div className="wrapCtn">{renderHome}</div>
-      </div>
+      <>
+        <div className="container">
+          <Helmet>
+            <title>Home</title>
+          </Helmet>
+          <HeaderMemo {...this.state} logOut={this.logOut} />
+          <div className="wrapCtn">{renderHome}</div>
+        </div>
+        {this.state.tokenExpired && <PopUp />}
+      </>
     );
   }
 }

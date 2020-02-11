@@ -10,17 +10,75 @@ body {
   position: relative;
 }
 
-.popUp{
+/* popUp js -- information for session expiry */
+.popUp {
   position: absolute;
   width: 400px;
-  height: 200px;
+  height: 300px;
   border-radius: 20px;
-  border:1px solid black;
-  top: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(126, 126, 126);
+  top: 45%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  background-color: rgba(255, 255, 255, 0.584);
+  margin-left: -200px;
+  margin-top: -150px;
+  box-shadow: 1px 1px 2px rgb(103, 102, 102);
+  z-index: 2;
+  background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.673),
+      rgba(255, 253, 253, 0.666)
+    ),
+    url("https://image.freepik.com/free-vector/student-using-laptop-library_74855-2539.jpg");
+  background-repeat: no-repeat;
+  animation: dialogue 6s ease-in-out 2s alternate infinite;
+}
+
+@keyframes dialogue {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.popTitle{
+  font-size: 1.8rem;
+  margin: 10px auto;
+  color: rgb(21, 219, 233);
+  text-shadow: 1px 1px 0px rgb(65, 64, 64);
+}
+
+.popLinkWrap{
+  width: 100%;
+  height: 15%;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.popUplinkTag {
+  margin: 0;
+  width: 25%;
+  height: 100%;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-radius: 20px;
+  background-color: rgb(62, 143, 242);
+  color: white;
 }
 
 .container {
@@ -92,12 +150,16 @@ img {
   object-fit: fill;
 }
 
+/* Set all odd list items to a different color (zebra-stripes) */
+ul li:nth-child(even) {
+  background: #7a8485;
+}
+
 /* in Todo.js: to control check effect with check variable in the class */
 /* When clicked on, add a background color and strike out text */
 ul li.checked {
-  background: rgb(110, 82, 150);
-  color: rgb(12, 12, 12);
-  text-decoration: line-through;
+  background: rgb(88, 64, 123);
+  text-decoration: line-through rgb(245, 244, 244);
 }
 
 ul li.checked::before {
@@ -115,12 +177,11 @@ ul li.checked::before {
 }
 
 ul li.checked::after {
-  border-color: rgb(14, 14, 14);
-
+  border-color: rgb(199, 253, 255);
+  box-shadow: 1px 1px 1px black;
 }
 
 /* in Login.js & Register.js */
-
 .userHeadIcon {
   height: 10rem;
   width: 10rem;
@@ -134,6 +195,28 @@ ul li.checked::after {
   border-radius: 50%;
   border: 1px solid rgb(131, 154, 159);
   box-shadow: 2px 2px 2px rgb(74, 72, 72);
+}
+
+.userIcon {
+  color: rgb(254, 254, 254);
+  animation: user 10s ease-in-out 2s alternate infinite;
+  margin-right: 5px;
+  position: relative;
+}
+
+@keyframes user {
+  0% {
+    color: rgb(60, 108, 230);
+  }
+  25% {
+    color: rgb(64, 255, 80);
+  }
+  50% {
+    color: rgb(175, 82, 250);
+  }
+  75% {
+    color: rgb(249, 252, 61);
+  }
 }
 
 .links {
@@ -150,6 +233,8 @@ ul li.checked::after {
   right: 3%;
 }
 
+
+
 /* in Footer.js */
 .footer {
   margin: 10px auto;
@@ -160,7 +245,7 @@ ul li.checked::after {
   color: lightgrey;
 }
 
-.footer span a{
+.footer span a {
   color: lightgrey;
   text-decoration: none;
 }
