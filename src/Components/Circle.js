@@ -13,7 +13,7 @@ const Circle = ({ id, className, todos, checkItemAmount }) => {
   if(todosAmount === 0){
     percentage3 = 0;
   }else{
-   percentage3 = checkItemAmount * 100 / todosAmount;
+   percentage3 = (checkItemAmount * 100 / todosAmount).toFixed(0);
   }
   console.log(checkItemAmount)
 

@@ -61,8 +61,8 @@ class Home extends Component {
           this.setState({ todos: data });
         })
         .catch(err => {
-          console.log(err.response.statusText);
-          if (err.response.statusText === "Unauthorized") {
+          console.log(err);
+          if (err.response && err.response.status === 401) {
             this.setState({ tokenExpired: true });
           }
         });
