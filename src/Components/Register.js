@@ -48,12 +48,8 @@ export default class Register extends Component {
       });
   };
 
-  onEmailChange = e => {
-    this.setState({ email: e.target.value });
-  };
-
-  onPasswordChange = e => {
-    this.setState({ password: e.target.value });
+  onInputChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   onEyeChange = e => {
@@ -98,8 +94,7 @@ export default class Register extends Component {
           <FaClipboard className="userHeadIcon" />
           <Form
             onSubmit={this.onSubmit}
-            onEmailChange={this.onEmailChange}
-            onPasswordChange={this.onPasswordChange}
+            onInputChange={this.onInputChange}
             onEyeChange={this.onEyeChange}
             {...this.state}
           />

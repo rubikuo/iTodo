@@ -50,7 +50,7 @@ const PopUp = () => {
         </Link>
       </div>
     </div>,
-    document.querySelector("#root")
+    document.body
   );
 };
 

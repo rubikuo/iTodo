@@ -28,7 +28,7 @@ class Home extends Component {
       ],
       todos: [],
       checkItems: checkItems$.value,
-      tokenExpired: false
+      tokenExpired: false,
     };
   }
 

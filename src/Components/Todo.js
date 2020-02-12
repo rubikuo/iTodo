@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import axios from "axios";
-import { token$, updateToken, checkItems$, updateCheckItem } from "./Store";
+import { token$, updateToken, checkItems$, updateCheckItem, removeCheckItem } from "./Store";
 import { FaTrash } from "react-icons/fa";
 import HeaderMemo from "./Header";
 import TodoForm from "./TodoForm";
@@ -67,6 +67,7 @@ export default class Todo extends Component {
   };
 
   handleCheck = e => {
+    e.stopPropagation();
     const id = e.target.id;
     updateCheckItem(id); // toggle the check
   };
@@ -118,6 +119,7 @@ export default class Todo extends Component {
       })
       .then(response => {
         console.log(response);
+        removeCheckItem(id);
         this.setState({
           todos: this.state.todos.filter(t => t.id !== id)
         });
@@ -152,7 +154,8 @@ export default class Todo extends Component {
             >
               {todo.content}
               <button
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   this.deleteItem(todo.id);
                 }}
                 className={styles.deleteBtn}

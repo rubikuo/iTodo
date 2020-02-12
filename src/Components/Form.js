@@ -4,8 +4,7 @@ import styles from "./Form.module.css"
 
 const Form = ({
   onSubmit,
-  onEmailChange,
-  onPasswordChange,
+  onInputChange,
   onEyeChange,
   email,
   password,
@@ -26,14 +25,16 @@ const Form = ({
       <input
         placeholder="Email"
         type="email"
-        onChange={onEmailChange}
+        name="email"
+        onChange={onInputChange}
         value={email}
       />
       <div className={styles.inputDiv}>
         <input
           placeholder="Password"
           type={inputType}
-          onChange={onPasswordChange}
+          name="password"
+          onChange={onInputChange}
           value={password}
         />
         {/* <i className="eyeIcon" onClick={onEyeChange} style={{display: eyeOpen}}><FaEye /></i>

@@ -34,13 +34,11 @@ export default class LogIn extends Component {
     this.subscription.unsubscribe();
   }
 
-  onEmailChange = e => {
-    this.setState({ email: e.target.value });
+  onInputChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
   };
 
-  onPasswordChange = e => {
-    this.setState({ password: e.target.value });
-  };
+  
 
   onEyeChange = e => {
     if (this.state.eyeOpen === "none") {
@@ -87,7 +85,6 @@ export default class LogIn extends Component {
     }
 
 
-
     return (
       <div className="container">
         <Helmet>
@@ -98,8 +95,7 @@ export default class LogIn extends Component {
           <FaUser className="userHeadIcon" />
           <Form
             onSubmit={this.onSubmit}
-            onEmailChange={this.onEmailChange}
-            onPasswordChange={this.onPasswordChange}
+            onInputChange={this.onInputChange}
             onEyeChange={this.onEyeChange}
             {...this.state}
           />
