@@ -11,11 +11,12 @@ export function updateToken(token) {
   token$.next(token);
 }
 
-
 // run load the page only once
-export const checkItems$ = new BehaviorSubject(new Set(JSON.parse(localStorage.getItem("checkItems") || "[]")));
-// run when you call it 
-export function updateCheckItem(item){
+export const checkItems$ = new BehaviorSubject(
+  new Set(JSON.parse(localStorage.getItem("checkItems") || "[]"))
+);
+// run when you call it
+export function updateCheckItem(item) {
   const newSet = new Set(Array.from(checkItems$.value));
   // checks if the id is existing
   if (newSet.has(item)) {
@@ -27,8 +28,7 @@ export function updateCheckItem(item){
   checkItems$.next(newSet);
 }
 
-export function removeCheckItem(item) { 
-  
+export function removeCheckItem(item) {
   console.log(checkItems$.value);
   const newSet = new Set(Array.from(checkItems$.value));
   newSet.delete(item);

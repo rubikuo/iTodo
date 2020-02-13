@@ -5,7 +5,7 @@ import Home from "./Components/Home";
 import LogIn from "./Components/LogIn";
 import Register from "./Components/Register";
 import Todo from "./Components/Todo";
-import FooterMemo from "./Components/Footer"
+import FooterMemo from "./Components/Footer";
 
 function App() {
   return (

@@ -2,12 +2,19 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import axios from "axios";
-import { token$, updateToken, checkItems$, updateCheckItem, removeCheckItem } from "./Store";
+import {
+  token$,
+  updateToken,
+  checkItems$,
+  updateCheckItem,
+  removeCheckItem
+} from "./Store";
 import { FaTrash } from "react-icons/fa";
 import HeaderMemo from "./Header";
 import TodoForm from "./TodoForm";
 import styles from "./Todo.module.css";
 import PopUp from "./PopUp";
+
 export default class Todo extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +26,7 @@ export default class Todo extends Component {
       login: true,
       page: "todo",
       errorMsg: "",
-      tokenExpired: false,
+      tokenExpired: false
     };
   }
 
@@ -91,17 +98,20 @@ export default class Todo extends Component {
         }
       )
       .then(response => {
-        // the response is the data we added so we an directly add it to the state without fetching the data from the server
+        // the response is the data we added so we can directly add it to the state without fetching the data from the server
         console.log(response.data);
         // this.fetchData(); // instead of fetching data from server again its better to render the data from client side directly
 
         this.setState({
           addContent: "",
-          todos: [...this.state.todos, response.data.todo]
+          todos: [...this.state.todos, response.data.todo] // to concat the data from the post response to the todo list in state
         });
       })
       .catch(err => {
         console.log(err.response.data);
+        if (err.response && err.response.status === 401) {
+          this.setState({ tokenExpired: true });
+        }
         this.setState({ errorMsg: err.response.data.details[0].message });
       });
   };
@@ -154,13 +164,13 @@ export default class Todo extends Component {
             >
               {todo.content}
               <button
-                onClick={(e) => {
+                onClick={e => {
                   e.stopPropagation();
                   this.deleteItem(todo.id);
                 }}
                 className={styles.deleteBtn}
               >
-                <FaTrash size="1rem" />
+                <FaTrash className={styles.deleteBtnIcon} />
               </button>
             </li>
           );
@@ -184,7 +194,7 @@ export default class Todo extends Component {
             {showMsg}
           </div>
         </div>
-        {this.state.tokenExpired && <PopUp /> }
+        {this.state.tokenExpired && <PopUp />}
       </>
     );
   }

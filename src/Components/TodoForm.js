@@ -13,7 +13,7 @@ const TodoForm = ({ submitTodo, addTodo, addContent }) => {
         value={addContent}
       />
       <button className={styles.addBtn}>
-        <FaPlusCircle size="2rem" />
+        <FaPlusCircle className={styles.addBtnIcon} />
       </button>
     </form>
   );

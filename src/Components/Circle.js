@@ -2,23 +2,17 @@ import React from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-
-
 const Circle = ({ id, className, todos, checkItemAmount }) => {
   let renderContent;
   let todosAmount = todos.length;
   const percentage1 = todosAmount / 100;
   const percentage2 = checkItemAmount / 100;
   let percentage3;
-  if(todosAmount === 0){
+  if (todosAmount === 0) {
     percentage3 = 0;
-  }else{
-   percentage3 = (checkItemAmount * 100 / todosAmount).toFixed(0);
+  } else {
+    percentage3 = ((checkItemAmount * 100) / todosAmount).toFixed(0);
   }
-  console.log(checkItemAmount)
-
-
-
 
   // to show how many items in todos
   if (id === "circle-one") {
@@ -44,10 +38,10 @@ const Circle = ({ id, className, todos, checkItemAmount }) => {
     );
   }
 
-  // to show how much has been fulfillment
+  // to show how much has been fulfilled
   if (id === "circle-three") {
     renderContent = (
-      <CircularProgressbar 
+      <CircularProgressbar
         value={percentage3}
         id={id}
         className={className}

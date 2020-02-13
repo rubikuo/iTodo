@@ -7,7 +7,6 @@ import HeaderMemo from "./Header";
 import Form from "./Form";
 import { FaUser, FaInfoCircle } from "react-icons/fa";
 
-// get method // post method
 export default class LogIn extends Component {
   constructor(props) {
     super(props);
@@ -37,8 +36,6 @@ export default class LogIn extends Component {
   onInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
-
-  
 
   onEyeChange = e => {
     if (this.state.eyeOpen === "none") {
@@ -78,12 +75,11 @@ export default class LogIn extends Component {
     let showMsg;
     if (this.state.error) {
       showMsg = (
-        <p style={{ color: "white" }}>
+        <p style={{ color: "rgb(167, 236, 254)" }}>
           <FaInfoCircle /> Invalid login information
         </p>
       );
     }
-
 
     return (
       <div className="container">

@@ -73,7 +73,7 @@ export default class Register extends Component {
 
     if (this.state.error === "User with that email address exists") {
       showMsg = (
-        <p style={{ color: "white" }}>
+        <p style={{ color: "rgb(167, 236, 254)" }}>
           {this.state.error}, Go to
           <Link className="links" to="/login">
             <FaUnlock /> Log In

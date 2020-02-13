@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import HeaderMemo from "./Header";
 import { token$, updateToken, checkItems$ } from "./Store";
-import { FaAngleRight, FaClipboardList } from "react-icons/fa";
+import { FaPen, FaUnlock, FaClipboardList } from "react-icons/fa";
 import Card from "./Card";
 import Circle from "./Circle";
 import styles from "./Home.module.css";
@@ -28,7 +28,7 @@ class Home extends Component {
       ],
       todos: [],
       checkItems: checkItems$.value,
-      tokenExpired: false,
+      tokenExpired: false
     };
   }
 
@@ -116,23 +116,20 @@ class Home extends Component {
             ))}
           </div>
 
-          <div className={styles.smlLinks}>
-            <div>Log In</div>
-            <Link to="/login" className={styles.linkTag}>
-              <FaAngleRight />
-            </Link>
-          </div>
-          <div className={styles.smlLinks}>
-            <div> Register </div>
-            <Link to="/register" className={styles.linkTag}>
-              <FaAngleRight />
-            </Link>
-          </div>
+          <Link to="/login" className={styles.smlLinks}>
+            <FaUnlock style={{ margin: "0 5px" }} />{" "}
+            <span style={{ margin: "0" }}>Log In</span>
+          </Link>
+
+          <Link to="/register" className={styles.smlLinks}>
+            <FaPen style={{ margin: "0 5px " }} />{" "}
+            <span style={{ margin: "0" }}>Register</span>
+          </Link>
         </>
       );
     }
 
-    console.log(this.state.token);
+    // console.log(this.state.token);
     return (
       <>
         <div className="container">

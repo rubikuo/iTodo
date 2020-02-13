@@ -1,10 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaSignOutAlt, FaUserAlt, FaUnlock, FaPen } from "react-icons/fa";
-import { IconContext } from "react-icons";
 import jwt from "jsonwebtoken";
 import styles from "./Header.module.css";
-import { CSSTransition } from "react-transition-group";
 
 const Header = ({ page, logOut, token }) => {
   let email;
@@ -31,10 +29,10 @@ const Header = ({ page, logOut, token }) => {
         </Link>
         <div className={styles.linksCtn}>
           <Link className={styles.links} to="/login">
-            <FaUnlock /> Log in
+            <FaUnlock /> <span className={styles.logInText}>Log in</span>
           </Link>
           <Link className={styles.links} to="/register">
-            <FaPen /> Register
+            <FaPen /> <span className={styles.registerText}>Register</span>
           </Link>
         </div>
       </>
@@ -50,18 +48,15 @@ const Header = ({ page, logOut, token }) => {
 
         <div className={styles.linksCtn}>
           <span style={{ color: "white", margin: "0 10px" }}>
-
             <FaUserAlt className="userIcon" />
-    
-
-            {email}
+            <span className={styles.headerEmail}>{email}</span>
           </span>
           <Link
             to="/"
             onClick={logOut}
             className={`${styles.logOutBtn} ${styles.links}`}
           >
-            <FaSignOutAlt /> Log out
+            <FaSignOutAlt /> <span className={styles.logoutText}>Log out</span>
           </Link>
         </div>
       </>

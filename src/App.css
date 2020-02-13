@@ -3,82 +3,12 @@
   box-sizing: border-box;
   margin: 0 auto;
   padding: 0;
+  font-family: "Sriracha", cursive;
 }
 
 body {
-  background-color: rgb(52, 51, 51);
+  background-color: rgb(55, 52, 53);
   position: relative;
-}
-
-/* popUp js -- information for session expiry */
-.popUp {
-  position: absolute;
-  width: 400px;
-  height: 300px;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid rgb(126, 126, 126);
-  top: 45%;
-  left: 50%;
-  margin-left: -200px;
-  margin-top: -150px;
-  box-shadow: 1px 1px 2px rgb(103, 102, 102);
-  z-index: 2;
-  background: linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.673),
-      rgba(255, 253, 253, 0.666)
-    ),
-    url("https://image.freepik.com/free-vector/student-using-laptop-library_74855-2539.jpg");
-  background-repeat: no-repeat;
-  animation: dialogue 6s ease-in-out 2s alternate infinite;
-}
-
-@keyframes dialogue {
-  0% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-7px);
-  }
-
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-.popTitle{
-  font-size: 1.8rem;
-  margin: 10px auto;
-  color: rgb(21, 219, 233);
-  text-shadow: 1px 1px 0px rgb(65, 64, 64);
-}
-
-.popLinkWrap{
-  width: 100%;
-  height: 15%;
-  margin-top: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.popUplinkTag {
-  margin: 0;
-  width: 25%;
-  height: 100%;
-  margin: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  border-radius: 20px;
-  background-color: rgb(62, 143, 242);
-  color: white;
 }
 
 .container {
@@ -93,7 +23,7 @@ body {
 .wrapCtn {
   width: 100%;
   height: 75vh;
-  margin-top: 20px;
+  margin-top: 10px;
   text-align: center;
 }
 
@@ -101,11 +31,9 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 30%;
-  min-width: 300px;
-  height: 55%;
-  padding-bottom: 10%;
-  margin-top: 20px;
+  width: 350px;
+  padding-bottom: 20px;
+  margin-top: 10px;
 }
 
 input[type="email"],
@@ -150,41 +78,33 @@ img {
   box-shadow: 2px 0px 8px rgb(60, 60, 60);
 }
 
-/* Set all odd list items to a different color (zebra-stripes) */
-ul li:nth-child(even) {
-  background: #7a8485;
-}
-
 /* in Todo.js: to control check effect with check variable in the class */
 /* When clicked on, add a background color and strike out text */
 ul li.checked {
-  background: rgb(88, 64, 123);
-  text-decoration: line-through rgb(245, 244, 244);
+  background: #a09e9e;
+  text-decoration: line-through rgb(255, 255, 255);
+  color: rgb(50, 49, 49);
 }
 
 ul li.checked::before {
   content: "";
   position: absolute;
-  border-color: rgba(199, 198, 198, 0.214);
+  border-color: rgb(254, 255, 255);
   border-style: solid;
-  border-width: 0 2px 2px 0;
-  top: 10px;
-  left: 16px;
+  border-width: 0 3px 3px 0;
+  box-shadow: 1px 1px 1px black;
+  top: 12px;
+  left: 22px;
   transform: rotate(45deg);
   height: 15px;
   width: 7px;
   z-index: 2;
 }
 
-ul li.checked::after {
-  border-color: rgb(199, 253, 255);
-  box-shadow: 1px 1px 1px black;
-}
-
 /* in Login.js & Register.js */
 .userHeadIcon {
-  height: 10rem;
-  width: 10rem;
+  height: 9rem;
+  width: 9rem;
   padding: 7px;
   margin-bottom: 5px;
   color: rgb(220, 220, 220);
@@ -197,6 +117,8 @@ ul li.checked::after {
   box-shadow: 2px 2px 2px rgb(74, 72, 72);
 }
 
+/* in header.js */
+
 .userIcon {
   color: rgb(254, 254, 254);
   animation: user 10s ease-in-out 2s alternate infinite;
@@ -206,16 +128,23 @@ ul li.checked::after {
 
 @keyframes user {
   0% {
-    color: rgb(60, 108, 230);
+    color: rgb(254, 254, 254);
   }
-  25% {
-    color: rgb(64, 255, 80);
+
+  20% {
+    color: rgb(94, 132, 228);
   }
-  50% {
-    color: rgb(175, 82, 250);
+  40% {
+    color: rgb(98, 232, 109);
   }
-  75% {
-    color: rgb(249, 252, 61);
+  60% {
+    color: rgb(167, 94, 226);
+  }
+  80% {
+    color: rgb(242, 166, 86);
+  }
+  100% {
+    color: rgb(240, 85, 157);
   }
 }
 
@@ -225,27 +154,134 @@ ul li.checked::after {
   color: rgb(30, 148, 245);
 }
 
-/* password showing control icon */
-.eyeIcon {
-  font-size: 1.2rem;
+/* popUp js -- information for session expiry */
+.popUp {
   position: absolute;
-  top: 40%;
-  right: 3%;
+  width: 400px;
+  height: 300px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(126, 126, 126);
+  top: 45%;
+  left: 50%;
+  margin-left: -200px;
+  margin-top: -150px;
+  box-shadow: 1px 1px 2px rgb(103, 102, 102);
+  z-index: 2;
+  background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.673),
+      rgba(255, 253, 253, 0.666)
+    ),
+    url("https://image.freepik.com/free-vector/student-using-laptop-library_74855-2539.jpg");
+  background-repeat: no-repeat;
+  animation: dialogue 6s ease-in-out 2s alternate infinite;
 }
 
+@keyframes dialogue {
+  0% {
+    transform: translateY(0px);
+  }
 
+  50% {
+    transform: translateY(-7px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.popTitle {
+  font-size: 1.8rem;
+  margin: 10px auto;
+  color: rgb(21, 219, 233);
+  text-shadow: 1px 1px 0px rgb(65, 64, 64);
+}
+
+.popLinkWrap {
+  width: 100%;
+  height: 15%;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.popUplinkTag {
+  margin: 0;
+  width: 25%;
+  height: 100%;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-radius: 20px;
+  background-color: rgb(62, 143, 242);
+  color: white;
+}
 
 /* in Footer.js */
 .footer {
   margin: 10px auto;
   display: flex;
+  text-align: center;
   flex-direction: column;
   justify-content: center;
   font-size: 0.8rem;
   color: lightgrey;
+  word-break: break-all;
 }
 
 .footer span a {
   color: lightgrey;
   text-decoration: none;
+}
+
+@media screen and (max-width: 600px) {
+  .userHeadIcon {
+    width: 7rem;
+    height: 7rem;
+  }
+
+  form {
+    width: 300px;
+  }
+
+  ul li.checked::before {
+    top: 8px;
+    height: 13px;
+    width: 5px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .wrapCtn {
+    height: 70vh;
+  }
+
+  .userHeadIcon {
+    width: 6.5rem;
+    height: 6.5rem;
+  }
+
+  input[type="text"] {
+    margin: 0px;
+  }
+  form {
+    width: 230px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  form {
+    width: 210px;
+  }
+  .footer {
+    font-size: 0.5rem;
+  }
 }

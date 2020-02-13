@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./Form.module.css"
-// import {FaEye, FaEyeSlash} from "react-icons/fa"
+import styles from "./Form.module.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Form = ({
   onSubmit,
@@ -37,8 +37,20 @@ const Form = ({
           onChange={onInputChange}
           value={password}
         />
-        {/* <i className="eyeIcon" onClick={onEyeChange} style={{display: eyeOpen}}><FaEye /></i>
-      <i className="eyeIcon" onClick={onEyeChange} style = {{display: eyeClose}}><FaEyeSlash /></i> */}
+        <i
+          className={styles.eyeIcon}
+          onClick={onEyeChange}
+          style={{ display: eyeOpen }}
+        >
+          <FaEye />
+        </i>
+        <i
+          className={styles.eyeIcon}
+          onClick={onEyeChange}
+          style={{ display: eyeClose }}
+        >
+          <FaEyeSlash />
+        </i>
       </div>
       {button}
     </form>
