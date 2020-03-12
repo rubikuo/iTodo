@@ -81,6 +81,7 @@ export default class Todo extends Component {
 
   logOut = () => {
     updateToken(null);
+    console.log(this.setState.token)
   };
 
   submitTodo = e => {
@@ -142,7 +143,7 @@ export default class Todo extends Component {
   }
 
   render() {
-    console.log(this.state.checkedItems);
+    console.log(this.state.checkItems);
     let showMsg = <p style={{ color: "red" }}>{this.state.errorMsg}</p>;
 
     let { todos } = this.state;

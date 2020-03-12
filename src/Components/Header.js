@@ -5,15 +5,15 @@ import jwt from "jsonwebtoken";
 import styles from "./Header.module.css";
 
 const Header = ({ page, logOut, token }) => {
-  let email;
-  if (token) {
-    let decoded = jwt.decode(token);
-    email = decoded.email;
-  }
+
+  // if (token) {
+
+   
+  // }
 
   let content;
 
-  if (token === null) {
+  if (token === null || token === undefined) {
     content = (
       <Link to="/" className={`${styles.links} ${styles.logo}`}>
         iToDo
@@ -40,6 +40,10 @@ const Header = ({ page, logOut, token }) => {
   }
 
   if (token) {
+    console.log(token)
+    let email;
+    let decoded = jwt.decode(token);
+    email = decoded.email;
     content = (
       <>
         <Link to="/" className={`${styles.links} ${styles.logo}`}>

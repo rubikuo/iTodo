@@ -1,6 +1,7 @@
 import { BehaviorSubject } from "rxjs";
 
-export const token$ = new BehaviorSubject(localStorage.getItem("token"));
+export const token$ = new BehaviorSubject(
+localStorage.getItem("token"));
 
 export function updateToken(token) {
   if (token) {
