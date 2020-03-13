@@ -45,7 +45,7 @@ const Header = ({ page, logOut, token }) => {
         <Link to="/" className={`${styles.links} ${styles.logo}`}>
           iToDo
         </Link>
-        <p>just for testing</p>
+        <p>just for testing again</p>
 
         <div className={styles.linksCtn}>
           <span style={{ color: "white", margin: "0 10px" }}>
