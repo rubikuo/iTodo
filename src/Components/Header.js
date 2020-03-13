@@ -5,11 +5,7 @@ import jwt from "jsonwebtoken";
 import styles from "./Header.module.css";
 
 const Header = ({ page, logOut, token }) => {
-
-  // if (token) {
-
    
-  // }
 
   let content;
 
@@ -49,6 +45,7 @@ const Header = ({ page, logOut, token }) => {
         <Link to="/" className={`${styles.links} ${styles.logo}`}>
           iToDo
         </Link>
+        <p>just for testing</p>
 
         <div className={styles.linksCtn}>
           <span style={{ color: "white", margin: "0 10px" }}>
